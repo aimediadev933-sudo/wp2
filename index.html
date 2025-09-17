@@ -1,1 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WP2 Workshop Training Portal - Complete List</title>
+    <style>
+        :root {
+            --primary: #F28C28;
+            --secondary: #E88C2D;
+            --body: #FCF5EC;
+            --text: #1D1D1B;
+            --secondary-dark: #9F4B14;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--body);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .workshop-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--primary));
+            color: white;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .workshop-row {
+            display: grid;
+            grid-template-columns: 120px 60px auto auto 200px;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s;
+        }
+
+        .workshop-row:hover {
+            background-color: var(--body);
+        }
+
+        .workshop-row:last-child {
+            border-bottom: none;
+        }
+
+        .call-info {
+            font-weight: 600;
+            color: var(--secondary-dark);
+        }
+
+        .wp-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .workshop-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--secondary-dark);
+            font-weight: 500;
+        }
+
+        .workshop-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .workshop-description {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .workshop-link {
+            background: var(--secondary);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .workshop-link:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(242, 140, 40, 0.4);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .status-done {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-withdraw {
+            background: #f44336;
+            color: white;
+        }
+
+        .call-section {
+            margin-bottom: 3rem;
+        }
+
+        .call-title {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 0;
+        }
+
+        .stats-bar {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1200px) {
+            .workshop-row {
+                grid-template-columns: 100px 50px auto 180px;
+                gap: 0.8rem;
+            }
+            
+            .workshop-description {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .workshop-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: left;
+            }
+            
+            .workshop-description {
+                display: block;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .search-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary-dark);
+            box-shadow: 0 0 10px rgba(242, 140, 40, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">WP2 Workshop Training Portal</div>
+                <div class="subtitle">AsiaConnect Network Engineering Training Programs</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Total Workshops</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">19</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Ongoing</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Call Phases</div>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search workshops by title, description, or call..." id="searchInput">
+        </div>
+
+        <!-- 1st Call -->
+        <div class="call-section">
+            <div class="call-title">1st Call Workshops</div>
+            <div class="workshop-table">
+                <div class="workshop-row">
+                    <div class="call-info">1. 1st Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">1.Capacity Development Workshop for AfgREN Network Engineers</div>
+                        <div class="workshop-title">Capacity Development Workshop for AfgREN Network Engineers (Routing and Switching Basics)</div>
+                        <div class="workshop-description">Comprehensive training on routing and switching fundamentals for Afghan Research and Education Network engineers.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c1wp2prj01.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">1. 1st Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">2.TRAINING PROGRAM FOR MAINTAINING CAMPUS NETWORK WORKSHOP</div>
+                        <div class="workshop-title">Title: Maintaining Campus Network</div>
+                        <div class="workshop-description">Training program focused on campus network maintenance and management best practices.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c1wp2prj02.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">1. 1st Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">3.SecureAsia_AsiaConnect Security Training Workshop</div>
+                        <div class="workshop-title">SecureAsia_AsiaConnect Security Training Workshop</div>
+                        <div class="workshop-description">Advanced security training workshop covering AsiaConnect network security protocols and implementations.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c1wp2prj03.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">1. 1st Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">4.GEANT_TF-CSIRTAsia</div>
+                        <div class="workshop-title">TF-CSIRT:Asia</div>
+                        <div class="workshop-description">GÉANT Task Force - Computer Security Incident Response Team for Asia region.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c1wp2prj04.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">1. 1st Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">5.Information and Network Security (and Monitoring) Workshop</div>
+                        <div class="workshop-title">Information and Network Security (and Monitoring) Workshop</div>
+                        <div class="workshop-description">Comprehensive workshop on information security and network monitoring techniques and tools.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c1wp2prj05.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2nd Call -->
+        <div class="call-section">
+            <div class="call-title">2nd Call Workshops</div>
+            <div class="workshop-table">
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">1.WP2_US_Performance Data Transfer and Measurements Workshop_India</div>
+                        <div class="workshop-title">Performance Data Transfer and Measurements Workshop - India</div>
+                        <div class="workshop-description">Advanced training on performance optimization and data transfer measurements for Indian networks.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c2wp2prj13.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">2.WP2_US_Performance Data Transfer and Measurements Workshop_Laos</div>
+                        <div class="workshop-title">Performance Data Transfer and Measurements Workshop - Laos</div>
+                        <div class="workshop-description">Performance optimization training specifically designed for Laos network infrastructure.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c2wp2prj14.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">3.WP2_BD_Workshop_on_Wireless_Network_Security</div>
+                        <div class="workshop-title">Workshop on Wireless Network and Security Management</div>
+                        <div class="workshop-description">Specialized training on wireless network security implementation and management strategies.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c2wp2prj15.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">4.WP2_MY_SecureAsi@_v2.0</div>
+                        <div class="workshop-title">SecureAsi@ v2.0 Advanced Security Training Workshop</div>
+                        <div class="workshop-description">Advanced security training workshop version 2.0 with enhanced security protocols and practices.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c2wp2prj16.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">5.WP2_PK_Campus Network Design and Security Workshop</div>
+                        <div class="workshop-title">Campus Network Design & Security Workshop</div>
+                        <div class="workshop-description">Comprehensive workshop on campus network architecture design and security implementation.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c2wp2prj17.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">2. 2nd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">6.WP2_BD_Workshop_on_IPv6_Deployment</div>
+                        <div class="workshop-title">IPv6 Deployment in R&E Networks</div>
+                        <div class="workshop-description">Training on IPv6 deployment strategies and implementation in Research and Education networks.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c2wp2prj18.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3rd Call -->
+        <div class="call-section">
+            <div class="call-title">3rd Call Workshops</div>
+            <div class="workshop-table">
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(1)#1. BD_Survey on Asi@Connect capacity development</div>
+                        <div class="workshop-title">Automatic Plant Disease Detection, Classification and Management</div>
+                        <div class="workshop-description">Advanced workshop on AI-based plant disease detection and management systems.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c3wp2prj30.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(2)#15. BD_Training on Cyber Security for Networking</div>
+                        <div class="workshop-title">Training on Cyber Security for Networking Professionals</div>
+                        <div class="workshop-description">Specialized cybersecurity training tailored for networking professionals and administrators.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c3wp2prj31.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(3)#23 IN_Capacity Building Program on NOC</div>
+                        <div class="workshop-title">Capacity Building program on NOC</div>
+                        <div class="workshop-description">Network Operations Center capacity building and management training program.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-withdraw">withdraw</span>
+                    </div>
+                    <div>
+                        <a href="https://c3wp2prj32.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(4)#34. BD_Workshop on Virtualization</div>
+                        <div class="workshop-title">Workshop on Virtualization and Cloud Computing for NREN Engineers under Asi@Connect Project</div>
+                        <div class="workshop-description">Comprehensive training on virtualization technologies and cloud computing for NREN engineers.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c3wp2prj33.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(5)#45_BD_Workshop on Advance NetworkSystem</div>
+                        <div class="workshop-title">Workshop on Advanced Network/System Administration and Security</div>
+                        <div class="workshop-description">Advanced training on network and system administration with focus on security best practices.</div>
+                    </div>
+                    <div class="workshop-description">
+                        <span class="status-badge status-done">Done</span>
+                    </div>
+                    <div>
+                        <a href="https://c3wp2prj34.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">3. 3rd Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">(6)#6. BT_Secure Coding Workshop</div>
+                        <div class="workshop-title">Title: Secure Coding Workshop</div>
+                        <div class="workshop-description">Hands-on training on secure coding practices and vulnerability prevention techniques.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c3wp2prj35.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4th Call -->
+        <div class="call-section">
+            <div class="call-title">4th Call Workshops</div>
+            <div class="workshop-table">
+                <div class="workshop-row">
+                    <div class="call-info">4. 4th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">#107 - Routing Infrastructure and Security</div>
+                        <div class="workshop-title">Routing Infrastructure Security Operations (RISO) Workshop</div>
+                        <div class="workshop-description">Advanced workshop on routing infrastructure security operations and best practices.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="http://c4wp2prj52.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">4. 4th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">#144 - Working on Campus</div>
+                        <div class="workshop-title">Workshop on Campus Network Operation and Security Management</div>
+                        <div class="workshop-description">Comprehensive training on campus network operations and security management strategies.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c4wp2prj53.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">4. 4th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">#148 - Hands on Training on</div>
+                        <div class="workshop-title">Hands on Training on Fundamental Web and Application Security Issues for NREN Professionals</div>
+                        <div class="workshop-description">Practical hands-on training covering web and application security fundamentals for NREN professionals.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c4wp2prj54.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">4. 4th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">#71 Training on Linux</div>
+                        <div class="workshop-title">Linux System Administration Training Workshop for IT Technicians of Public Universities in Afghanistan</div>
+                        <div class="workshop-description">Specialized Linux system administration training for IT technicians in Afghan public universities.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c4wp2prj55.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5th Call -->
+        <div class="call-section">
+            <div class="call-title">5th Call Workshops</div>
+            <div class="workshop-table">
+                <div class="workshop-row">
+                    <div class="call-info">5. 5th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">[2-1]No.2-Workshop on Campus Network Design and its Operation</div>
+                        <div class="workshop-title">Workshop on Campus Network Design and its Operation</div>
+                        <div class="workshop-description">Advanced workshop focusing on campus network design principles and operational management.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c5wp2prj68.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">5. 5th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">[2-2]No.19-Capacity development for implementing Eduroam in NRENs</div>
+                        <div class="workshop-title">Capacity development for implementing Eduroam in NRENs</div>
+                        <div class="workshop-description">Training on implementing and managing Eduroam services in National Research and Education Networks.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c5wp2prj69.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+
+                <div class="workshop-row">
+                    <div class="call-info">5. 5th Call</div>
+                    <div class="wp-tag">WP2</div>
+                    <div>
+                        <div class="workshop-id">[2-3]No.24-Capacity Development Program on DWDM Transmission Network</div>
+                        <div class="workshop-title">Capacity Development Program on DWDM Transmission Network</div>
+                        <div class="workshop-description">Comprehensive training program on Dense Wavelength Division Multiplexing transmission networks.</div>
+                    </div>
+                    <div class="workshop-description"></div>
+                    <div>
+                        <a href="https://c5wp2prj70.asiaconnect.online" class="workshop-link" target="_blank">Access Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const workshopRows = document.querySelectorAll('.workshop-row');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            workshopRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = 'grid';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+        // Add smooth scrolling to call sections
+        document.querySelectorAll('.call-title').forEach(title => {
+            title.style.cursor = 'pointer';
+            title.addEventListener('click', function() {
+                const section = this.parentElement;
+                const table = section.querySelector('.workshop-table');
+                
+                if (table.style.display === 'none') {
+                    table.style.display = 'block';
+                    this.style.borderRadius = '10px 10px 0 0';
+                } else {
+                    table.style.display = 'none';
+                    this.style.borderRadius = '10px';
+                }
+            });
+        });
+
+        // Add hover effects to workshop links
+        document.querySelectorAll('.workshop-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.workshop-link').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('Workshop accessed:', this.href);
+                // You can add analytics tracking here
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        // Add export functionality
+        function exportToCSV() {
+            let csv = 'Call,WP,Workshop ID,Title,Description,Status,Link\n';
+            
+            workshopRows.forEach(row => {
+                const cells = row.querySelectorAll('div');
+                const call = cells[0].textContent.trim();
+                const wp = cells[1].textContent.trim();
+                const id = cells[2].querySelector('.workshop-id').textContent.trim();
+                const title = cells[2].querySelector('.workshop-title').textContent.trim();
+                const description = cells[2].querySelector('.workshop-description').textContent.trim();
+                const status = cells[3].querySelector('.status-badge') ? 
+                    cells[3].querySelector('.status-badge').textContent.trim() : '';
+                const link = cells[4].querySelector('a').href;
+                
+                csv += `"${call}","${wp}","${id}","${title}","${description}","${status}","${link}"\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'wp2_workshops.csv';
+            a.click();
+        }
+
+        // Add export button
+        const exportButton = document.createElement('button');
+        exportButton.textContent = 'Export to CSV';
+        exportButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        `;
+        
+        exportButton.addEventListener('click', exportToCSV);
+        exportButton.addEventListener('mouseenter', function() {
+            this.style.background = 'var(--secondary-dark)';
+            this.style.transform = 'translateY(-2px)';
+        });
+        exportButton.addEventListener('mouseleave', function() {
+            this.style.background = 'var(--primary)';
+            this.style.transform = 'translateY(0)';
+        });
+        
+        document.body.appendChild(exportButton);
+
+        // Add print styles
+        const printStyles = document.createElement('style');
+        printStyles.textContent = `
+            @media print {
+                .search-box, .stats-bar, button { display: none !important; }
+                .workshop-row { break-inside: avoid; }
+                .call-section { break-inside: avoid; }
+                body { font-size: 12px; }
+                .workshop-link { color: #000 !important; text-decoration: underline; }
+            }
+        `;
+        document.head.appendChild(printStyles);
+
+        // Add back to top button
+        const backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '↑';
+        backToTopButton.style.cssText = `
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        `;
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.style.opacity = '1';
+                backToTopButton.style.visibility = 'visible';
+            } else {
+                backToTopButton.style.opacity = '0';
+                backToTopButton.style.visibility = 'hidden';
+            }
+        });
+
+        document.body.appendChild(backToTopButton);
+    </script>
+</body>
+</html>
