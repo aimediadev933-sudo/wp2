@@ -677,7 +677,6 @@
     </div>
 
     <script>
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
         const workshopRows = document.querySelectorAll('.workshop-row');
 
@@ -692,8 +691,8 @@
                     row.style.display = 'none';
                 }
             });
+        });
 
-        // Add smooth scrolling to call sections
         document.querySelectorAll('.call-title').forEach(title => {
             title.style.cursor = 'pointer';
             title.addEventListener('click', function() {
@@ -710,7 +709,6 @@
             });
         });
 
-        // Add hover effects to workshop links
         document.querySelectorAll('.workshop-link').forEach(link => {
             link.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px) scale(1.05)';
@@ -721,15 +719,12 @@
             });
         });
 
-        // Add click tracking for analytics
         document.querySelectorAll('.workshop-link').forEach(link => {
             link.addEventListener('click', function() {
                 console.log('Workshop accessed:', this.href);
-                // You can add analytics tracking here
             });
         });
 
-        // Add keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.key === 'f') {
                 e.preventDefault();
@@ -737,7 +732,6 @@
             }
         });
 
-        // Add export functionality
         function exportToCSV() {
             let csv = 'Call,WP,Workshop ID,Title,Description,Status,Link\n';
             
@@ -763,7 +757,6 @@
             a.click();
         }
 
-        // Add export button
         const exportButton = document.createElement('button');
         exportButton.textContent = 'Export to CSV';
         exportButton.style.cssText = `
@@ -794,7 +787,6 @@
         
         document.body.appendChild(exportButton);
 
-        // Add print styles
         const printStyles = document.createElement('style');
         printStyles.textContent = `
             @media print {
@@ -807,7 +799,6 @@
         `;
         document.head.appendChild(printStyles);
 
-        // Add back to top button
         const backToTopButton = document.createElement('button');
         backToTopButton.innerHTML = '↑';
         backToTopButton.style.cssText = `
